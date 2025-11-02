@@ -54,5 +54,3 @@ accessories:
         - POSTGRES_PASSWORD
         - POSTGRES_DB
 
-volumes:
-  db: {}
