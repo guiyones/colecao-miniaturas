@@ -30,7 +30,7 @@
 
 /public/assets
 
-# Ignore master key for decrypting credentials and more.
+# Ignore master k y for decrypting credentials and more.
 /config/master.key
 
 /app/assets/builds/*

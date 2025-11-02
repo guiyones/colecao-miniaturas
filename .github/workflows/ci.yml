@@ -99,3 +99,36 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+
+deploy: 
+  name: Deploy in production
+  runs-on: ubuntu-latest
+
+  needs: 
+    - scan_ruby
+    - scan_js
+    - lint
+    - test
+   
+  steps:
+    name: Checkout from code
+    uses: actions/checkout@v5
+
+    name: Ruby Configuration
+    uses: ruby/setup-ruby@v1
+    with: 
+      - bundler-cache: true
+
+    name: SSH Configuration
+    uses: webfactory/ssh-agent@0.9.0
+    with:
+      ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
+
+    name: Exec kamal deploy
+    run: |
+          gem install kamal 
+          kamal deploy 
+        env:
+          # Segredos para o Kamal e o GHCR
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
