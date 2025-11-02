@@ -45,7 +45,7 @@ accessories:
     image: postgres:16
     host: 138.199.239.103
     volumes: 
-      - db: /var/lib/postgresql/miniaturas
+      - db:/var/lib/postgresql/miniaturas
     env:
       clear:
         POSTGRES_PORT: 5432
