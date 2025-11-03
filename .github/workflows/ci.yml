@@ -128,7 +128,7 @@ deploy:
     run: |
           gem install kamal 
           kamal deploy 
-        env:
+    env:
           # Segredos para o Kamal e o GHCR
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}

@@ -11,7 +11,7 @@ ssh:
 
 proxy:
   ssl: true
-  host: app.example.com
+  host: sicoob.risecode.com.br
 
 registry:
   server: ghcr.io
