@@ -111,24 +111,25 @@ deploy:
     - test
    
   steps:
-    name: Checkout from code
-    uses: actions/checkout@v5
+    - name: Checkout from code
+      uses: actions/checkout@v5
 
-    name: Ruby Configuration
-    uses: ruby/setup-ruby@v1
-    with: 
-      - bundler-cache: true
+    - name: Ruby Configuration
+      uses: ruby/setup-ruby@v1
+      with: 
+        - bundler-cache: true
 
-    name: SSH Configuration
-    uses: webfactory/ssh-agent@0.9.0
-    with:
-      ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
+    - name: SSH Configuration
+      uses: webfactory/ssh-agent@0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
 
-    name: Exec kamal deploy
-    run: |
-          gem install kamal 
-          kamal deploy 
-    env:
+    - name: Exec kamal deploy
+      env:
           # Segredos para o Kamal e o GHCR
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      run:
+          gem install kamal 
+          kamal deploy 
+          
