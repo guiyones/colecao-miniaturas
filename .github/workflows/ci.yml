@@ -103,12 +103,15 @@ jobs:
 deploy: 
   name: Deploy in production
   runs-on: ubuntu-latest
-
   needs: 
     - scan_ruby
     - scan_js
     - lint
     - test
+  env:
+      # Segredos para o Kamal e o GHCR
+      KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
    
   steps:
     - name: Checkout from code
@@ -126,10 +129,6 @@ deploy:
         ssh-agent-passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
     - name: Exec kamal deploy
-      env:
-          # Segredos para o Kamal e o GHCR
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       run: |
           gem install kamal 
           kamal deploy 
