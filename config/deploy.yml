@@ -31,20 +31,19 @@ aliases:
   dbc: app exec --interactive --reuse "bin/rails dbconsole"
 
 volumes:
-  - "hot_wheels_storage:/rails/storage"
+  - "colecao_miniatura_storage:/rails/storage"
 
 asset_path: /rails/public/assets
 
 builder:
   arch: amd64
 
-
 accessories:
   db:
     image: postgres:16
     host: 138.199.239.103
     volumes: 
-      - db:/var/lib/postgresql/miniaturas
+      - db:/var/lib/postgresql/colecao_miniatura
     env:
       clear:
         POSTGRES_PORT: 5432
@@ -52,4 +51,5 @@ accessories:
         - POSTGRES_USER
         - POSTGRES_PASSWORD
         - POSTGRES_DB
+
 
