@@ -112,7 +112,9 @@ deploy:
       # Segredos para o Kamal e o GHCR
       KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-   
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }} 
   steps:
     - name: Checkout from code
       uses: actions/checkout@v5
