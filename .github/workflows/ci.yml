@@ -112,10 +112,11 @@ jobs:
       - name: Checkout from code
         uses: actions/checkout@v5
 
-      - name: Ruby Configuration
+      - name: Set up ruby
         uses: ruby/setup-ruby@v1
-        with: 
-          - bundler-cache: true
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
 
       - name: SSH Configuration
         uses: webfactory/ssh-agent@0.9.0
