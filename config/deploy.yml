@@ -16,8 +16,7 @@ proxy:
 registry:
   server: ghcr.io
   username: guiyones
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  password: <%= ENV["REGISTRY_PASSWORD"] %>
 
 env:
   secret:
