@@ -110,6 +110,7 @@ deploy:
     - test
   env:
       # Segredos para o Kamal e o GHCR
+      POSTGRES_HOST: db
       KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
