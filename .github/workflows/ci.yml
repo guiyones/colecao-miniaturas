@@ -119,7 +119,7 @@ jobs:
           bundler-cache: true
 
       - name: SSH Configuration
-        uses: webfactory/ssh-agent@0.9.0
+        uses: webfactory/ssh-agent@v0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
           ssh-agent-passphrase: ${{ secrets.SSH_PASSPHRASE }}
