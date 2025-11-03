@@ -108,14 +108,6 @@ deploy:
     - scan_js
     - lint
     - test
-  env:
-      # Segredos para o Kamal e o GHCR
-      POSTGRES_HOST: db
-      KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_DB: ${{ secrets.POSTGRES_DB }} 
   steps:
     - name: Checkout from code
       uses: actions/checkout@v5
@@ -132,6 +124,14 @@ deploy:
         ssh-agent-passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
     - name: Exec kamal deploy
+      env:
+        KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+        POSTGRES_HOST: db
+        POSTGRES_PORT: 5432
       run: |
           gem install kamal 
           kamal deploy 

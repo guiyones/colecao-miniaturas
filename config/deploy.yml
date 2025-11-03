@@ -20,9 +20,15 @@ registry:
 
 env:
   secret:
+    secret:
     - RAILS_MASTER_KEY
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+    - POSTGRES_DB
   clear:
     SOLID_QUEUE_IN_PUMA: true
+    POSTGRES_HOST: db
+    POSTGRES_PORT: 5432
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
@@ -32,6 +38,7 @@ aliases:
 
 volumes:
   - "colecao_miniatura_storage:/rails/storage"
+  - "db:/var/lib/postgresql/miniaturas"
 
 asset_path: /rails/public/assets
 
@@ -45,11 +52,12 @@ accessories:
     volumes: 
       - db:/var/lib/postgresql/colecao_miniatura
     env:
-      clear:
-        POSTGRES_PORT: 5432
       secret:
         - POSTGRES_USER
         - POSTGRES_PASSWORD
         - POSTGRES_DB
+      clear:
+        POSTGRES_PORT: 5432
+
 
 
