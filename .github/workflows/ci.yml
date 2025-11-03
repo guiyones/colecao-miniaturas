@@ -124,6 +124,10 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
           log-public-key: true
 
+      - name: Check master key
+        run: echo "${RAILS_MASTER_KEY}"
+
+
       - name: Exec kamal deploy
         env:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
