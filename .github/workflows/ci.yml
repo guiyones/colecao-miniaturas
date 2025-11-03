@@ -108,7 +108,7 @@ jobs:
       - scan_js
       - lint
       - test
-   
+  
     steps:
       - name: Checkout from code
         uses: actions/checkout@v5
@@ -128,6 +128,12 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+      
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519_kamal
+          chmod 600 ~/.ssh/id_ed25519_kamal
 
       - name: SSH Configuration
         uses: webfactory/ssh-agent@v0.9.0
@@ -137,7 +143,6 @@ jobs:
 
       - name: Check master key
         run: echo "${RAILS_MASTER_KEY}"
-
 
       - name: Exec kamal deploy
         env:
